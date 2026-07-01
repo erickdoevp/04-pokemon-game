@@ -10,6 +10,13 @@
   <section v-else class="flex flex-col justify-center items-center w-screen h-screen">
     <h1 class="m-5">¿Quién es este Pokemon?</h1>
     <h3 class="capitalize">{{ gameStatus }}</h3>
+    <button
+      v-if="gameStatus !== GameStatus.Playing"
+      class="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-800 transition-all"
+      @click="getNextRound(4)"
+    >
+      Next round!!!
+    </button>
     <PokemonPicture
       :pokemon-id="randomPokemon?.id ?? 0"
       :img="randomPokemon?.image"
@@ -30,7 +37,8 @@ import PokemonPicture from '../components/PokemonPicture.vue';
 import { usePokemonGame } from '../composables/usePokemonGame.ts';
 import { GameStatus } from '../interfaces/game-status.enum.ts';
 
-const { isLoading, randomPokemon, gameStatus, pokemonOptions, checkAnswer } = usePokemonGame();
+const { isLoading, randomPokemon, gameStatus, pokemonOptions, checkAnswer, getNextRound } =
+  usePokemonGame();
 </script>
 
 <style scoped></style>
